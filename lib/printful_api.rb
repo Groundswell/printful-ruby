@@ -10,6 +10,8 @@ require 'printful_api/order'
 require 'printful_api/product'
 require 'printful_api/shipping_rate'
 require 'printful_api/state'
+require 'printful_api/store'
+require 'printful_api/store_packing_slip'
 require 'printful_api/tax_rate'
 require 'printful_api/variant'
 require 'printful_api/webhooks'
@@ -26,7 +28,7 @@ module PrintfulAPI
 
 	def self.request( method, path, opts = {} )
 
-		puts "#{method}, #{path}, #{opts}"
+		# puts "#{method}, #{path}, #{opts}"
 
 		case method.to_s.upcase
 		when "GET"
