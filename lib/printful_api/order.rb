@@ -3,7 +3,7 @@ module PrintfulAPI
 	class Order < APIResource
 		extend PrintfulAPI::APIOperations::List
 
-		attr_accessor :id, :type, :brand, :model, :image, :variant_count, :files, :options, :dimensions
+		attr_accessor :id
 
 
 		def self.resource_path

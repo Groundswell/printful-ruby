@@ -6,7 +6,7 @@ module PrintfulAPI
 
 			def delete( id, opts={} )
 
-				PrintfulAPI.request( :DELETE, "#{self.resource_path}/#{id}" )
+				PrintfulAPI.request( :DELETE, "#{opts.delete(:resource_path) || self.resource_path}/#{id}" )
 
 			end
 

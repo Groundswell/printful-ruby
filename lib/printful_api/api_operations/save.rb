@@ -2,16 +2,13 @@ module PrintfulAPI
 
 	module APIOperations
 
-		module Get
+		module Save
 
-			def get( id, opts={} )
+			def save()
 
 				data = PrintfulAPI.request( :GET, "#{opts.delete(:resource_path) || self.resource_path}/#{id}" )
 
-				model = self.new
-				model.load_data( data )
-
-				model
+				#@todo
 
 			end
 

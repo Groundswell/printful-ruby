@@ -6,7 +6,7 @@ module PrintfulAPI
 
 			def list( filters={}, opts={} )
 
-				data_list = PrintfulAPI.request( :GET, opts[:resource_path] || self.resource_path, params: filters )
+				data_list = PrintfulAPI.request( :GET, opts.delete(:resource_path) || self.resource_path, params: filters )
 
 				data_list.collect do |data|
 
