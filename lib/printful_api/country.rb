@@ -1,9 +1,9 @@
 module PrintfulAPI
 
 	class Country < APIResource
-		extend PrintfulAPI::APIOperations::List
+		include PrintfulAPI::APIOperations::List
 
-		attr_accessor :code, :name
+		api_attributes :code, :name
 
 		def self.list( filters={}, opts={} )
 			taxable = filters.delete(:taxable)

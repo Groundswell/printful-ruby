@@ -1,9 +1,9 @@
 module PrintfulAPI
 
 	class Webhook < APIResource
-		extend PrintfulAPI::APIOperations::Create
+		include PrintfulAPI::APIOperations::Create
 
-		attr_accessor :url, :types, :params
+		api_attributes :url, :types, :params
 
 		def self.get( opts={} )
 
@@ -20,6 +20,10 @@ module PrintfulAPI
 
 			PrintfulAPI.request( :DELETE, self.resource_path )
 
+		end
+
+		def delete
+			self.class.delete()
 		end
 
 		def self.resource_path

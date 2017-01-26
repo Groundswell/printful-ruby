@@ -4,11 +4,17 @@ module PrintfulAPI
 
 		module Save
 
-			def save()
+			def save( opts = {} )
 
-				data = PrintfulAPI.request( :GET, "#{opts.delete(:resource_path) || self.resource_path}/#{id}" )
+				if self.id.present?
 
-				#@todo
+					self.class.update( self.to_h, opts )
+
+				else
+
+					self.class.create( self.to_h, opts )
+
+				end
 
 			end
 

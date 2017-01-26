@@ -2,7 +2,7 @@ module PrintfulAPI
 
 	class ShippingRate < APIResource
 
-		attr_accessor :id, :name, :rate, :currency
+		api_attributes :id, :name, :rate, :currency
 
 		# PrintfulAPI::ShippingRate.list( { address1: '12372 Carmel Country Rd', city: 'San Diego', country_code: 'US', state_code: 'CA', zip: 92130}, [{quantity: 2, variant_id: PrintfulAPI::Product.get(1).variants.first.id}], 'USD'  )
 		def self.list( recipient = {}, items = [], currency = 'USD', opts = {} )

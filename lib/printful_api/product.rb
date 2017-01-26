@@ -1,10 +1,10 @@
 module PrintfulAPI
 
 	class Product < APIResource
-		extend PrintfulAPI::APIOperations::List
-		extend PrintfulAPI::APIOperations::Get
+		include PrintfulAPI::APIOperations::List
+		include PrintfulAPI::APIOperations::Get
 
-		attr_accessor :id, :type, :brand, :model, :image, :variant_count, :files, :options, :dimensions
+		api_attributes :id, :type, :brand, :model, :image, :variant_count, :files, :options, :dimensions
 
 		def variants
 			@variants ||= PrintfulAPI::Variant.list( product_id: self.id )

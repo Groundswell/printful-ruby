@@ -1,8 +1,9 @@
 module PrintfulAPI
 
 	class StorePackingSlip < APIResource
+		include APIOperations::Create
 
-		attr_accessor :email, :phone, :message
+		api_attributes :email, :phone, :message
 
 		def self.get( opts={} )
 

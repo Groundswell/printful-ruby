@@ -2,7 +2,7 @@ module PrintfulAPI
 
 	module APIOperations
 
-		module Create
+		module Update
 
 			def self.included(base)
 				base.extend(ClassMethods)
@@ -10,12 +10,11 @@ module PrintfulAPI
 
 			module ClassMethods
 
-				def create( data={}, params={} )
+				def update( id, data={}, params={} )
 
-					PrintfulAPI.request( :POST, opts.delete(:resource_path) || self.resource_path, params: params, data: data )
+					PrintfulAPI.request( :PUT, "#{self.resource_path}/#{id}", params: params, data: data )
 
 				end
-
 			end
 
 		end

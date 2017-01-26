@@ -4,14 +4,22 @@ module PrintfulAPI
 
 		module Get
 
-			def get( id, opts={} )
+			def self.included(base)
+				base.extend(ClassMethods)
+			end
 
-				data = PrintfulAPI.request( :GET, "#{opts.delete(:resource_path) || self.resource_path}/#{id}" )
+			module ClassMethods
 
-				model = self.new
-				model.load_data( data )
+				def get( id, opts={} )
 
-				model
+					data = PrintfulAPI.request( :GET, "#{opts.delete(:resource_path) || self.resource_path}/#{id}" )
+
+					model = self.new
+					model.load_data( data )
+
+					model
+
+				end
 
 			end
 

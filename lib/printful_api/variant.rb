@@ -1,9 +1,9 @@
 module PrintfulAPI
 
 	class Variant < APIResource
-		extend PrintfulAPI::APIOperations::Get
+		include PrintfulAPI::APIOperations::Get
 
-		attr_accessor :id, :product_id, :name, :size, :color, :color_code, :image, :price, :in_stock, :product
+		api_attributes :id, :product_id, :name, :size, :color, :color_code, :image, :price, :in_stock, :product
 
 		def self.resource_path
 			'/products/variant'
