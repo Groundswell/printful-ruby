@@ -12,6 +12,7 @@ require 'printful_api/shipping_rate'
 require 'printful_api/state'
 require 'printful_api/tax_rate'
 require 'printful_api/variant'
+require 'printful_api/webhooks'
 
 
 
