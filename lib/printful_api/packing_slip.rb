@@ -1,6 +1,6 @@
 module PrintfulAPI
 
-	class StorePackingSlip < APIResource
+	class PackingSlip < APIResource
 		include APIOperations::Create
 
 		api_attributes :email, :phone, :message

@@ -4,6 +4,7 @@ module PrintfulAPI
 		include PrintfulAPI::APIOperations::List
 
 		api_attributes :code, :name
+		has_many :states
 
 		def self.list( filters={}, opts={} )
 			taxable = filters.delete(:taxable)
@@ -14,19 +15,6 @@ module PrintfulAPI
 				super( filters, opts.merge( resource_path: '/tax/countries' ) )
 			else
 				super( filters, opts )
-			end
-		end
-
-		def states=( states_data )
-
-			@states = nil
-
-			if states_data.present?
-
-				@states = states_data.collect do |state_data|
-					PrintfulAPI::State.new.load_data( state_data )
-				end
-
 			end
 		end
 

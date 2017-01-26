@@ -2,12 +2,9 @@ module PrintfulAPI
 
 	class Store < APIResource
 
-		api_attributes :id, :name, :website, :return_address, :billing_address, :payment_card, :packing_slip, :created
+		api_attributes :id, :name, :website, :return_address, :billing_address, :payment_card, :created
+		belongs_to :packing_slip #, class: 'PrintfulAPI::PackingSlip'
 
-		def packing_slip=( data )
-			@packing_slip ||= StorePackingSlip.new.load_data( data )
-			@packing_slip
-		end
 
 		def self.get( opts={} )
 

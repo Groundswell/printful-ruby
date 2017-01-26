@@ -7,8 +7,35 @@ module PrintfulAPI
 
 
 		def self.api_attributes( *args )
-			self.api_attribute_list = args
+			self.api_attribute_list = (self.api_attribute_list || []).concat(args)
+
 			attr_accessor *args
+		end
+
+		def self.has_many( attribute_name, args = {} )
+			args[:class] = args[:class].constantize if args[:class].is_a? String
+			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize.singularize}"
+
+			self.api_attributes *[attribute_name.to_sym]
+
+        	define_method("#{attribute_name}=") do |array|
+				if array.present?
+					array = array.collect do |data|
+						args[:class].constantize.new.load_data(data)
+					end
+				end
+				self.instance_variable_set("@#{attribute_name}", array)
+			end
+		end
+
+		def self.belongs_to( attribute_name, args = {} )
+			args[:class] = args[:class].constantize if args[:class].is_a? String
+			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize}"
+
+			self.api_attributes *[attribute_name.to_sym]
+			define_method("#{attribute_name}=") do |data|
+				self.instance_variable_set("@#{attribute_name}", args[:class].constantize.new.load_data(data))
+			end
 		end
 
 		def load_data( data )
