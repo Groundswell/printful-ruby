@@ -14,7 +14,7 @@ module PrintfulAPI
 
 		def self.has_many( attribute_name, args = {} )
 			args[:class] = args[:class] if args[:class].is_a? String
-			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize.singularize}"
+			args[:class] ||= "PrintfulAPI::#{APIResource.singularize( APIResource.camelize(attribute_name.to_s ) )}"
 
 			self.api_attributes *[attribute_name.to_sym]
 
@@ -30,7 +30,7 @@ module PrintfulAPI
 
 		def self.belongs_to( attribute_name, args = {} )
 			args[:class] = args[:class] if args[:class].is_a? String
-			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize}"
+			args[:class] ||= "PrintfulAPI::#{APIResource.camelize( attribute_name.to_s )}"
 			args[:foreign_key] ||= "#{attribute_name}_id"
 
 			self.api_attributes *[attribute_name.to_sym]
@@ -56,7 +56,7 @@ module PrintfulAPI
 			data.each do |key,value|
 
 				if self.respond_to? "#{key}="
-					self.try("#{key}=", value)
+					self.send("#{key}=", value)
 				else
 					puts "Accessor doesn't exist #{self.class.name}\##{"#{key}="}"
 				end
@@ -70,7 +70,7 @@ module PrintfulAPI
 		def to_h()
 			hash = {}
 			self.class.api_attribute_list.each do |attribute_name|
-				value = self.try(attribute_name)
+				value = self.send(attribute_name)
 				if value.is_a? Array
 
 					hash[attribute_name] = value.collect do |array_item|
@@ -89,6 +89,15 @@ module PrintfulAPI
 			end
 
 			hash
+		end
+
+		def self.camelize( str )
+			str.split('_').map {|w| w.capitalize}.join
+		end
+
+		def self.singularize( str )
+			str = str[0..-2] if str[-1] == 's'
+			str
 		end
 
 	end
