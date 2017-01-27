@@ -1,4 +1,10 @@
+# Printful Ruby bindings
+# API spec at https://www.printful.com/docs
+
+require 'printful_api/version'
+
 require 'printful_client'
+
 require 'printful_api/api_resource'
 require 'printful_api/api_operations/create'
 require 'printful_api/api_operations/delete'
@@ -12,6 +18,7 @@ require 'printful_api/cost'
 require 'printful_api/file'
 require 'printful_api/gift_data'
 require 'printful_api/item'
+require 'printful_api/item_option'
 require 'printful_api/order'
 require 'printful_api/packing_slip'
 require 'printful_api/product'

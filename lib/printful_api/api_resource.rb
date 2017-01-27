@@ -13,7 +13,7 @@ module PrintfulAPI
 		end
 
 		def self.has_many( attribute_name, args = {} )
-			args[:class] = args[:class].constantize if args[:class].is_a? String
+			args[:class] = args[:class] if args[:class].is_a? String
 			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize.singularize}"
 
 			self.api_attributes *[attribute_name.to_sym]
@@ -29,7 +29,7 @@ module PrintfulAPI
 		end
 
 		def self.belongs_to( attribute_name, args = {} )
-			args[:class] = args[:class].constantize if args[:class].is_a? String
+			args[:class] = args[:class] if args[:class].is_a? String
 			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize}"
 
 			self.api_attributes *[attribute_name.to_sym]
