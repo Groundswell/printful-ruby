@@ -35,7 +35,7 @@ module PrintfulAPI
 
 			self.api_attributes *[attribute_name.to_sym]
 
-			define_method("#{attribute_name}") do |data|
+			define_method("#{attribute_name}") do
 				attribute_value = self.instance_variable_get( "@#{attribute_name}" )
 				attribute_value ||= args[:class].new.get( args[:foreign_key] ) if self.respond_to?( args[:foreign_key] )
 				self.instance_variable_set( "@#{attribute_name}", attribute_value )
@@ -45,7 +45,8 @@ module PrintfulAPI
 				if data.is_a?(PrintfulAPI::APIResource)
 					self.instance_variable_set("@#{attribute_name}", data)
 				else
-					self.instance_variable_set("@#{attribute_name}", args[:class].constantize.new.load_data(data))
+					model = args[:class].constantize.new.load_data(data) if data.present?
+					self.instance_variable_set( "@#{attribute_name}", model )
 				end
 			end
 		end

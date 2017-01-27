@@ -12,7 +12,9 @@ module PrintfulAPI
 
 				def create( data={}, params={} )
 
-					PrintfulAPI.request( :POST, opts.delete(:resource_path) || self.resource_path, params: params, data: data )
+					result = PrintfulAPI.request( :POST, params.delete(:resource_path) || self.resource_path, params: params, data: data )
+
+					self.new.load_data( result )
 
 				end
 

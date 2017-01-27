@@ -119,7 +119,38 @@ product.dimensions # Hash
 
 ``` ruby
 
-# @todo
+order = PrintfulAPI::Order.create( {
+    "recipient": {
+        "name": "John Doe",
+        "address1": "19749 Dearborn St",
+        "city": "Chatsworth",
+        "state_code": "CA",
+        "country_code": "US",
+        "zip": "91311"
+    },
+	"external_id": 'order_1112',
+    "items": [{
+        "variant_id": 1,
+        "quantity": 1,
+        "files": [{
+            "url": "http://example.com/files/posters/poster_1.jpg"
+        }]
+    }]
+} )
+
+order.id # 2071687
+order.external_id # "order_1112"
+order.status # "draft"
+order.shipping # "FEDEX_SMART_POST"
+order.created # 1485550869
+order.updated # 1485550869
+order.recipient # PrintfulAPI::Address
+order.items # PrintfulAPI::Item[]
+order.costs # PrintfulAPI::Cost
+order.retail_costs # PrintfulAPI::Cost
+order.shipments # []
+order.gift # nil
+order.packing_slip # nil
 
 ```
 

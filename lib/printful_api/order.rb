@@ -11,7 +11,8 @@ module PrintfulAPI
 		api_attributes :id, :external_id, :status, :created, :updated, :costs, :shipping, :currency
 		belongs_to :recipient, class: 'PrintfulAPI::Address'
 		has_many :items
-		belongs_to :retail_cost, class: 'PrintfulAPI::Cost'
+		belongs_to :costs, class: 'PrintfulAPI::Cost'
+		belongs_to :retail_costs, class: 'PrintfulAPI::Cost'
 		belongs_to :gift, class: 'PrintfulAPI::GiftData'
 		belongs_to :packing_slip
 		has_many :shipments
