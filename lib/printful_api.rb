@@ -38,7 +38,7 @@ module PrintfulAPI
 
 	@@client = PrintfulClient.new( ENV['PRINTFUL_API_KEY'] )
 
-	def self.api_key( api_key )
+	def self.api_key=( api_key )
 		@@client = PrintfulClient.new( api_key )
 	end
 

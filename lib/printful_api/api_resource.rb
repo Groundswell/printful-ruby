@@ -42,7 +42,11 @@ module PrintfulAPI
 			end
 
 			define_method("#{attribute_name}=") do |data|
-				self.instance_variable_set("@#{attribute_name}", args[:class].constantize.new.load_data(data))
+				if data.is_a?(PrintfulAPI::APIResource)
+					self.instance_variable_set("@#{attribute_name}", data)
+				else
+					self.instance_variable_set("@#{attribute_name}", args[:class].constantize.new.load_data(data))
+				end
 			end
 		end
 
