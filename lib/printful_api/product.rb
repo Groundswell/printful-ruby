@@ -4,11 +4,15 @@ module PrintfulAPI
 		include PrintfulAPI::APIOperations::List
 		include PrintfulAPI::APIOperations::Get
 
-		api_attributes :id, :type, :brand, :model, :image, :variant_count, :files, :options, :dimensions
+		api_attributes :id, :type, :brand, :model, :image, :variant_count, :dimensions
+
+		# has_many :allowed_files, class: 'PrintfulAPI::FileType'
+		has_many :files, class: 'PrintfulAPI::FileType'
+		# has_many :allowed_options, class: 'PrintfulAPI::OptionType'
+		has_many :options, class: 'PrintfulAPI::OptionType'
 
 		def variants
 			@variants ||= PrintfulAPI::Variant.list( product_id: self.id )
-
 			@variants
 		end
 

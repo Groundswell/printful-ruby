@@ -31,8 +31,16 @@ module PrintfulAPI
 		def self.belongs_to( attribute_name, args = {} )
 			args[:class] = args[:class] if args[:class].is_a? String
 			args[:class] ||= "PrintfulAPI::#{attribute_name.to_s.camelize}"
+			args[:foreign_key] ||= "#{attribute_name}_id"
 
 			self.api_attributes *[attribute_name.to_sym]
+
+			define_method("#{attribute_name}") do |data|
+				attribute_value = self.instance_variable_get( "@#{attribute_name}" )
+				attribute_value ||= args[:class].new.get( args[:foreign_key] ) if self.respond_to?( args[:foreign_key] )
+				self.instance_variable_set( "@#{attribute_name}", attribute_value )
+			end
+
 			define_method("#{attribute_name}=") do |data|
 				self.instance_variable_set("@#{attribute_name}", args[:class].constantize.new.load_data(data))
 			end
@@ -42,7 +50,11 @@ module PrintfulAPI
 			self.raw_data = data
 			data.each do |key,value|
 
-				self.try("#{key}=", value)
+				if self.respond_to? "#{key}="
+					self.try("#{key}=", value)
+				else
+					puts "Accessor doesn't exist #{self.class.name}\##{"#{key}="}"
+				end
 
 			end
 
