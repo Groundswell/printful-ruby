@@ -22,6 +22,18 @@ module PrintfulAPI
 			'/orders'
 		end
 
+		# Confirm draft for fulfillment
+		# Approves for fulfillment an order that was saved as a draft. Store owner's credit card is charged when the order is submitted for fulfillment.
+		def confirm_for_fulfillment
+
+			result = PrintfulAPI.request( :POST, "/orders/#{self.id}/confirm", {} )
+
+			self.load_data( result )
+
+			return true
+
+		end
+
 	end
 
 end

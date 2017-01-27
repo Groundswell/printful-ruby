@@ -152,6 +152,14 @@ order.shipments # []
 order.gift # nil
 order.packing_slip # nil
 
+# once all order information is confirmed and correct, run the confirm command
+# and the store owner will be charged, and the printing begins.
+order.confirm_for_fulfillment()
+
+# didn't mean to process the order?  delete it and the order will be canceled,
+# and money returned to the store owner.
+order.delete()
+
 ```
 
 ## Shipping and Tax Rates
