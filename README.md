@@ -123,19 +123,29 @@ product.dimensions # Hash
 
 ```
 
-## Files
-
-``` ruby
-
-# @todo
-
-```
-
 ## Shipping and Tax Rates
 
 ``` ruby
 
-# @todo
+# shipping options available for a set of items
+shipping_rates = PrintfulAPI::ShippingRate.list( { address1: '12372 Carmel Country Rd', city: 'San Diego', country_code: 'US', state_code: 'CA', zip: 92130}, [{quantity: 2, variant_id: PrintfulAPI::Product.get(1).variants.first.id}], 'USD'  )
+
+shipping_rate = shipping_rates.first
+
+shipping_rate.id # "USPS_FIRST"
+shipping_rate.name # "USPS First Class Mail (3-5 business days after fulfillment)"
+shipping_rate.rate # "3.05"
+shipping_rate.currency # "USD"
+
+```
+
+``` ruby
+
+# tax rates Printful will charge on orders to a specific location
+tax_rate = PrintfulAPI::TaxRate.get( country_code: 'US', state_code: 'CA', city: 'San Diego', zip: 92130  )
+tax_rate.required # true
+tax_rate.rate # 0.775
+tax_rate.shipping_taxable # false
 
 ```
 
