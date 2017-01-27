@@ -19,12 +19,12 @@ with custom packaging directly to your customer.  Printful make custom:
 * Skirts
 * and more
 
-[Sign up here](signup) to explore the full list of products, start creating,
+[Sign up here](https://printful.com/a/amrap) to explore the full list of products, start creating,
 previewing, and selling your designs.
 
 We provide a comprehensive list of classes which map to the Printful data model,
 allowing developers to pull and manipulate data with ease. This gem wraps
-[the official Printful client library](libraries).
+[the official Printful client library](https://www.printful.com/docs/libraries).
 
 
 ## Installation
@@ -41,7 +41,7 @@ If you want to build the gem from source:
 ### Requirements
 
 * Ruby 1.9.3 or above.
-* A Printful account, and api key.  [Sign up here](signup)
+* A Printful account, and api key.  [Sign up here](https://printful.com/a/amrap)
 
 ### Bundler
 
@@ -59,8 +59,8 @@ gem 'printful_api'
 ## Usage
 
 In order to access the Printful API you must first have an api key, which get
-after creating [a Printful account](signup).  After signing in, go to your
-[store dashboard](storedashboard).  If you haven't yet
+after creating [a Printful account](https://printful.com/a/amrap).  After signing in, go to your
+[store dashboard](https://www.printful.com/dashboard/store).  If you haven't yet
 create a store, otherwise click on the store to get to the "Update Store" screen.
 Click on the "API" tab, to get to the "API Access" view.  In a box below, there
 will be a random set of letters and numbers, this is your api key.  You will
@@ -209,7 +209,3 @@ country.states.first.code # "AA"
 country.states.first.name # "Armed Forces Americas (except Canada)"
 
 ```
-
-[storedashboard]: https://www.printful.com/dashboard/store
-[libraries]: https://www.printful.com/docs/libraries
-[signup]: https://printful.com/a/amrap
