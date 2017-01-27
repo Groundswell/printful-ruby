@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email       	= 'meister@spacekace.com'
   s.files 			= `git ls-files`.split("\n")
   s.require_paths 	= ['lib']
-  s.homepage    =	'http://rubygems.org/gems/printful_api'
+  s.homepage    =	'https://github.com/Groundswell/printful-ruby'
   s.license       = 'MIT'
   s.required_ruby_version = '>= 1.9.3'
 end
