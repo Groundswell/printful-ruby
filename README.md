@@ -143,7 +143,21 @@ product.dimensions # Hash
 
 ``` ruby
 
-# @todo
+# list all countries that are valid for Printful shipping.  A country and State
+# core a required for orders, when available from this api.
+countries = PrintfulAPI::Country.list()
+country = countries.find{|country| country.code == 'US' }
+
+# use the code values when referencing a country or state in an order
+
+country.code # "US"
+country.name # "United States"
+
+# a list of states/provinces/regions for that country
+country.states # State[]
+
+country.states.first.code # "AA"
+country.states.first.name # "Armed Forces Americas (except Canada)"
 
 ```
 
