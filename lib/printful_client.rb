@@ -13,7 +13,7 @@ require 'uri'
 
 module PrintfulClientModule
 
-	API_URL = 'https://api.theprintful.com/'
+	API_URL = 'https://api.printful.com/'
 	USER_AGENT = 'Printful API Ruby Library 1.0'
 
     @api_key
